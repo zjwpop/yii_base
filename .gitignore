@@ -38,6 +38,3 @@ phpunit.phar
 *.sh
 *.zip
 
-api/web/favicon.ico
-backend/web/favicon.ico
-capi/web/favicon.ico

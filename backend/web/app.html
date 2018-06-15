@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-param" content="_csrf">
+    <meta name="csrf-token" content="kESYw9GAIQGY32tGuV6I7eU10la0_1VjLk7Qjo07gCX4CtWls-wUSe6MB3XKJ72HiEO1DveoIShxBum--WyxXQ==">
+    <title>修正详解 html 不闭合</title>
+    <link href="/assets/9595e35f/css/bootstrap.css" rel="stylesheet">
+<link href="/css/css.css" rel="stylesheet"></head>
+<body>
+
+<div class="wrap">
+
+    <div class="container mainspc">
+                        <div class="spd-default-index">
+    <h4>修正详解 html 不闭合</h4>
+	<div> 查看请按F12 点 console 选项卡</div>
+	<div style="height:15px">&nbsp;</div>
+	<div class="container"><div class="row">
+	    <div class="col-xs-6 api-switch">
+		     <div class="switch-span" id="opener">开</div>
+			 <div class="switch-span sactive" id="closer">关</div>
+		</div>
+		<div class="col-xs-6 api-switch">
+		     <div class="switch-span1 sactive" id="show_opener">开</div>
+			 <div class="switch-span1" id="show_closer">关</div>
+		</div>
+		<div class="col-xs-6 text-center dfh"> 上传开关 </div>
+		<div class="col-xs-6 text-center dfh"> 数据显示开关</div>
+	</div></div>
+	<div style="height:15px">&nbsp;</div>
+	<div class="upload-per" style="" id="UpPer"></div>
+
+</div>
+
+      </div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <p class="pull-left">&copy; namaiche2018</p>
+    </div>
+</footer>
+
+<script src="/assets/a9e3406c/jquery.js"></script>
+<script type="text/javascript">$(function(){
+	var tmp=0;
+	var show=1;
+	var user_id=100;
+	var inter=setInterval(doAjax,2000);
+	function doAjax(){
+		if(tmp==1){
+			ajax();
+		}
+	}
+	
+	function ajax(){
+	    user_id++;
+		$.ajax({	
+			async:true,
+			cache: true,
+			type: 'get'
+			url:"/temp/user-order",
+			dataType:'json',
+			success:function(data){
+				if(show==1){
+					console.log(data);
+				}
+				if(Number(data.user_id)>=320){  
+					clearInterval(inter);
+				}
+			}
+		});	
+	}
+	
+
+	$("#opener").click(function(){
+		swt(1);
+	});
+	$("#closer").click(function(){
+		swt(0);
+	});
+	
+	
+	function swt(open){
+		if(tmp!=open){
+			tmp=open;
+			$(".switch-span").toggleClass("sactive");
+		}
+  					
+	}
+	
+	$("#show_opener").click(function(){
+		swt1(1);
+	});
+	$("#show_closer").click(function(){
+		swt1(0);
+	});
+	function swt1(open){
+		if(show!=open){
+			show=open;
+			$(".switch-span1").toggleClass("sactive");
+		}
+  					
+	}
+	
+});
+</script></body>
+</html>

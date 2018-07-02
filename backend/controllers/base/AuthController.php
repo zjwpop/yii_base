@@ -20,12 +20,13 @@ class AuthController extends Controller {
 		if (!parent::beforeAction($action)) {
 			return false;
 		}
+		// return true;
 
 		if(Yii::$app->user->isGuest){
 			return $this->redirect(['/user/login']);
 		}
 
-		if (Yii::$app->user->id >0) {
+		if (Yii::$app->user->id > 0) {
 			return true;
 		}
 

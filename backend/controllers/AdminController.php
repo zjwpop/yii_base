@@ -68,15 +68,16 @@ class AdminController extends AuthController
     public function actionCreate()
     {
         $model = new Admin();
-        if ($model->load(Yii::$app->request->post())) {
-            if ($model->save()) {
-                // $auth_db = new DbManager();
-                // $auth_db->revokeAll($model->id);
-
-                // $auth = Yii::$app->authManager;
-                // $role = $auth->createRole($model->role);
-                // $auth_db->assign($role, $model->id);
-
+        if ($request->isPost) {
+            $post = $request->post($model->formName(), []);
+            if (empty($post['password'])) {
+                unset($post['password']);
+            }
+            $model->setAttributes($post);
+            if (isset($post['password'])) {
+                $model->setPassword($post['password']);
+            }
+            if ($model->save()){
                 Message::setSuccessMsg('添加成功');
                 return $this->redirect(['index']);
             } else {
@@ -110,14 +111,7 @@ class AdminController extends AuthController
             if (isset($post['password'])) {
                 $model->setPassword($post['password']);
             }
-            if ($model->save()) {
-                // $auth_db = new DbManager();
-                // $auth_db->revokeAll($model->id);
-
-                // $auth = Yii::$app->authManager;
-                // $role = $auth->createRole($model->role);
-                // $auth_db->assign($role, $model->id);
-
+            if ($model->save()){
                 Message::setSuccessMsg('修改成功');
                 return $this->redirect(['index']);
             } else {

@@ -126,20 +126,21 @@ class Helper {
 				],
 		   	];
 		$series=[
-			'table_name'=>'car_family',
+			'table_name'=>'car_series',
 			'fields'=>[
 				'brand_code'=>'brand_code',
 				'factory_id'=>'factory_code',
 				'style_code'=>'code',
 				'style_name'=>'name',
+				'on_sale'=>'on_sale',
 				],
 		   	];
 		$spec=[
-			'table_name'=>'car',
+			'table_name'=>'car_spec',
 			'fields'=>[
 				'brand_code'=>'brand_code',
 				'factory_code'=>'factory_code',
-				'style_code'=>'family_code',
+				'style_code'=>'series_code',
 				'style_child_code'=>'code',
 				'style_child_name'=>'name',
 				'factory_price2'=>'factory_price',
